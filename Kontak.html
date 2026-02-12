@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Kontak - Tuying</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: linear-gradient(to bottom, #222, #d9e); 
+      padding: 40px 20px; 
+      margin: 0; 
+    }
+    .container { 
+      max-width: 500px; 
+      margin: auto; 
+      background: #333; 
+      padding: 40px; 
+      border-radius: 15px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+    }
+    h2 { text-align: center; color: #fff; margin-bottom: 30px; }
+    label { display: block; margin: 15px 0 8px; font-weight: 600; color: #34495e; }
+    input, textarea { 
+      width: 100%; 
+      padding: 12px; 
+      margin-bottom: 20px; 
+      border: 1px solid #bdc3c7; 
+      border-radius: 8px; 
+      font-size: 16px; 
+      box-sizing: border-box; 
+    }
+    button { 
+      background: #3498db; 
+      color: white; 
+      padding: 14px; 
+      border: none; 
+      width: 100%; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-size: 18px; 
+      font-weight: bold; 
+      transition: background 0.3s; 
+    }
+    button:hover { background: #2980b9; }
+    #status { 
+      text-align: center; 
+      margin-top: 20px; 
+      font-weight: bold; 
+      font-size: 16px; 
+    }
+    .success { color: #27ae60; }
+    .error { color: #e74c3c; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Kirim Pesan ke Tuying 💬</h2>
+  
+  <form id="contact-form">
+    <label for="name">Nama Lengkap:</label>
+    <input type="text" id="name" name="name" required placeholder="Masukin nama kamu ya..."/>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required placeholder="contoh@email.com"/>
+    
+    <label for="message">Pesan Kamu:</label>
+    <textarea id="message" name="message" rows="6" required placeholder="Ceritain apa yang mau disampein..."></textarea>
+    
+    <button type="submit">Kirim Pesan Sekarang</button>
+  </form>
+  
+  <div id="status"></div>
+</div>
+
+<!-- EmailJS SDK terbaru (v4) -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    // GANTI INI DENGAN PUNYA KAMU !!!
+    emailjs.init({
+      publicKey: "WZx3cqRVdxxCiTlbK",  // ← dari dashboard, contoh: "abc123def456..."
+    });
+  })();
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const status = document.getElementById('status');
+    status.textContent = "Lagi di kirim... sabar ya kak 😊";
+    status.className = "";
+
+    // GANTI Service ID & Template ID kamu di sini
+    const SERVICE_ID   = "service_l1f9lir";     // contoh: service_xxxxxx
+    const TEMPLATE_ID  = "template_q5kj27p";    // contoh: template_yyyyyy
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+      .then(function(response) {
+        status.textContent = "Pesan berhasil terkirim! Terima kasih banyak ya 💕";
+        status.className = "success";
+        document.getElementById('contact-form').reset(); // reset form
+      }, function(error) {
+        status.textContent = "Waduh gagal nih: " + (error.text || "Cek koneksi atau ID-nya ya");
+        status.className = "error";
+        console.error("EmailJS error:", error);
+      });
+  });
+</script>
+
+</body>
+</html>
