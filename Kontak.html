@@ -74,14 +74,14 @@
   <div id="status"></div>
 </div>
 
-<!-- EmailJS SDK terbaru (v4) -->
+<!-- Email -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script type="text/javascript">
   (function(){
-    // GANTI INI DENGAN PUNYA KAMU !!!
+    // Gemagus !!!
     emailjs.init({
-      publicKey: "WZx3cqRVdxxCiTlbK",  // ← dari dashboard, contoh: "abc123def456..."
+      publicKey: "WZx3cqRVdxxCiTlbK",  // ← from dashboard, : "abc125..."
     });
   })();
 
@@ -92,9 +92,9 @@
     status.textContent = "Lagi di kirim... sabar ya kak 😊";
     status.className = "";
 
-    // GANTI Service ID & Template ID kamu di sini
-    const SERVICE_ID   = "service_l1f9lir";     // contoh: service_xxxxxx
-    const TEMPLATE_ID  = "template_q5kj27p";    // contoh: template_yyyyyy
+    //  Service ID 
+    const SERVICE_ID   = "service_8d1ginsr";     // contoh: service_xxxxxx
+    const TEMPLATE_ID  = "template_q5kj27p";    // : template_yyyyyy
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
       .then(function(response) {
@@ -102,7 +102,7 @@
         status.className = "success";
         document.getElementById('contact-form').reset(); // reset form
       }, function(error) {
-        status.textContent = "Waduh gagal nih: " + (error.text || "Cek koneksi atau ID-nya ya");
+        status.textContent = "Waduh gagal nih: " + (error.text || "Cek ID-nya ya");
         status.className = "error";
         console.error("EmailJS error:", error);
       });
