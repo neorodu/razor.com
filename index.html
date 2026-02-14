@@ -44,8 +44,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link">Beranda</a></li>
                 <li><a href="#features" class="nav-link">Menu</a></li>
-                <li><a href="blog.html" class="nav-link">Bantuan</a></li>
-                <li><a href="Kontak.html" class="nav-link">Kontak</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="#" class="nav-link">Kontak</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
@@ -63,7 +63,7 @@
         <div class="hero-content">
             <div class="text-rotator">
                 <div class="text-set active">
-                    <h1 class="glitch-text" data-text="FUTURE IS NOW">GEMAGUS IS NOW</h1>
+                    <h1 class="glitch-text" data-text="FUTURE IS NOW">GEMAGUS Setengah</h1>
                     <p class="subtitle">next website digital modern</p>
                 </div>
                 <div class="text-set">
@@ -219,7 +219,7 @@ Kadang justru, cinta yang paling tulus adalah yang tidak banyak bicara.</p>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <h2 class="section-title">Loading</h2>
+        <h2 class="section-title">Loadd</h2>
         <div class="contact-container">
             <div class="contact-form">
            <!-- From Uiverse.io by Vosoone --> 
@@ -413,6 +413,35 @@ Kadang justru, cinta yang paling tulus adalah yang tidak banyak bicara.</p>
             </div>
         </div>
     </section>
+        <!-- pesan -->
+<div class="fab" id="fab-toggle">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+</div>
+<!-- Modal chat -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-content">
+    <button class="close-btn" id="close-modal">&times;</button>
+    <h2>Kirim Pesan ke Tuying 💫</h2>
+    
+    <form id="contact-form">
+      <label for="name">Nama Lengkap:</label>
+      <input type="text" id="name" name="name" required placeholder="Masukin nama kamu ya..."/>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="contoh@email.com"/>
+      
+      <label for="message">Pesan Kamu:</label>
+      <textarea id="message" name="message" rows="6" required placeholder="Ceritain apa yang mau disampein..."></textarea>
+      
+      <button type="submit">Kirim Pesan Sekarang</button>
+    </form>
+    
+    <div id="status"></div>
+  </div>
+</div>
+
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <!-- Footer -->
     <footer>
@@ -426,7 +455,7 @@ Kadang justru, cinta yang paling tulus adalah yang tidak banyak bicara.</p>
         </div>
     </footer>
 <script src="js/gemagus-scripts.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
     window.addEventListener("load", function() {
       var audio = document.getElementById("musik");
@@ -452,6 +481,53 @@ Kadang justru, cinta yang paling tulus adalah yang tidak banyak bicara.</p>
       });
     }, { once: true });
   </script>
+<script type="text/javascript">
+  emailjs.init("WZx3cqRVdxxCiTlbK");
+
+  // Toggle Modal
+  const fab = document.getElementById('fab-toggle');
+  const modal = document.getElementById('modal');
+  const closeModal = document.getElementById('close-modal');
+
+  fab.addEventListener('click', () => {
+    modal.classList.add('active');
+  });
+
+  closeModal.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  // Close modal when clicking outside content
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // Form Submit (sama seperti sebelumnya)
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const status = document.getElementById('status');
+    status.textContent = "Lagi di kirim... sabar ya kak 😊";
+    status.className = "";
+
+    const SERVICE_ID   = "service_8d1gins";
+    const TEMPLATE_ID  = "template_q5kj27p";
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+      .then(function() {
+        status.textContent = "Pesan berhasil terkirim! Terima kasih banyak ya 💕";
+        status.className = "success";
+        document.getElementById('contact-form').reset();
+        setTimeout(() => modal.classList.remove('active'), 2000); // Auto close setelah sukses
+      }, function(error) {
+        status.textContent = "Waduh gagal nih: " + (error.text || "Cek koneksi atau ID-nya ya");
+        status.className = "error";
+        console.error("EmailJS error:", error);
+      });
+  });
+</script>
 
 </body>
 </html>
