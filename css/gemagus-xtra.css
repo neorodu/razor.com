@@ -39,7 +39,7 @@
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(5px);
       display: flex;
       align-items: center;
@@ -65,7 +65,7 @@
       -webkit-backdrop-filter: blur(16px) saturate(180%);
       border-radius: 24px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6),
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0,3),
                   inset 0 0 20px rgba(100, 150, 255, 0.1);
       transform: scale(0.8);
       transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -99,13 +99,13 @@
 
     h2 {
       text-align: center;
-      color: #f0f4ff;
+      color: gold;
       margin-bottom: 35px;
       font-size: 2.2rem;
       text-shadow: 0 0 15px rgba(100, 150, 255, 0.4);
     }
 
-    label { display: block; margin: 20px 0 10px; font-weight: 600; color: #c0d0ff; }
+    label { display: block; margin: 20px 0 10px; font-weight: 600; color: gold; }
     input, textarea {
       width: 100%;
       padding: 14px;
@@ -113,7 +113,7 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
-      color: #fff;
+      color: #808;
       font-size: 1rem;
       transition: all 0.3s;
     }
@@ -153,7 +153,7 @@
       right: 25px;
       width: 65px;
       height: 65px;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      background: linear-gradient(135deg, #6a11cb, #222);
       border-radius: 50%;
       box-shadow: 0 10px 30px rgba(37, 117, 252, 0.5);
       display: flex;
@@ -162,7 +162,7 @@
       cursor: pointer;
       z-index: 9998;
       transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid green;
     }
 
     .fab:hover {
@@ -170,7 +170,7 @@
       box-shadow: 0 15px 40px rgba(37, 117, 252, 0.7);
     }
 
-    .fab svg { width: 30px; height: 30px; fill: white; }
+    .fab svg { width: 30px; height: 30px; fill: gold; }
 
     /* Hide FAB on desktop/large screens */
     @media (min-width: 769px) {
